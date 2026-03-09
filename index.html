@@ -182,7 +182,12 @@
       60%      { transform: translateX(-4px); }
       80%      { transform: translateX(4px); }
     }
-    .name-error {
+    .name-note {
+      font-size: 0.72rem;
+      color: var(--text-sub);
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
       font-size: 0.75rem;
       color: #c0392b;
       font-style: italic;
@@ -921,6 +926,7 @@
           <input class="field-input name-input" type="text" id="nameInput"
             placeholder="Ilagay ang iyong buong pangalan"
             autocomplete="off" spellcheck="false" />
+          <p class="name-note">📝 Note: Siguraduhing may spaces sa pagitan ng bawat salita. hal. <span style="font-family:monospace;font-size:0.72rem;">Vincent Babia 333</span></p>
           <p class="name-error" id="nameError"></p>
         </div>
         <div class="btn-wrap" style="margin-top:1.5rem;">
@@ -1059,7 +1065,11 @@
   <script>
     const VISITED_KEY   = 'slytherin_agreement_done';
     const NAME_KEY      = 'slytherin_user_name';
-    const ACCEPTED_NAME = 'vincent babia';
+    const ACCEPTED_NAMES = [
+      'vincent babia 333',
+      'hertz john tranquilo 333',
+      'kian charles borja 333'
+    ];
 
     let enteredName = '';
 
@@ -1083,7 +1093,7 @@
         showNameError('Pakisulat ang iyong buong pangalan.');
         return;
       }
-      if (val.toLowerCase() !== ACCEPTED_NAME) {
+      if (!ACCEPTED_NAMES.includes(val.toLowerCase())) {
         showNameError('Hindi kilala ang pangalang iyan. Subukan ulit.');
         nameInput.classList.add('error');
         setTimeout(() => nameInput.classList.remove('error'), 600);
